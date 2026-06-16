@@ -10,14 +10,14 @@ const LEFT_LINKS = [
 
 const RIGHT_LINKS = [
   { label: "blogs", href: "/blog" },
-  { label: "contact me", href: "/contact" },
+  { label: "say hi", href: "/say-hi" },
 ];
 
 export default function ComicNav() {
   const pathname = usePathname();
 
   return (
-    <header className="site-header fixed left-0 right-0 top-7 z-50">
+    <header className="site-header">
       <nav className="comic-nav mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-lg shadow-sm">
         <div className="nav-side flex min-w-0 justify-start">
           {LEFT_LINKS.map((link) => (
