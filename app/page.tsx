@@ -1,3 +1,4 @@
+import AnimatedName from "./components/AnimatedName";
 import ComicNav from "./components/ComicNav";
 import KatanaThemeSlider from "./components/KatanaThemeSlider";
 
@@ -6,47 +7,58 @@ export default function Home() {
     <main className="comic-stage">
       <ComicNav />
 
-      <section className="comic-page flex items-center px-8 pb-12 pt-32 sm:px-12 md:px-20 lg:px-24">
-        <div className="grid w-full items-center gap-16 lg:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_420px]">
-          <div className="max-w-[800px]">
-            <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:gap-16">
-              <p className="text-lg tracking-[0.18em] text-[var(--accent)]">
-                BUILD / BREAK / FIX / REPEAT
-              </p>
-              <KatanaThemeSlider />
-            </div>
+      <section className="comic-page flex flex-col justify-center px-8 pb-12 pt-32 sm:px-12 md:px-20 lg:px-24">
+        <div className="theme-row mb-6">
+          <p>BUILD / BREAK / FIX / REPEAT</p>
+          <KatanaThemeSlider />
+        </div>
 
-            <h1 className="manga-title mb-6 text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
-              <span className="block">Prabhat Bajpai</span>
+        <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px]">
+          <div className="max-w-[800px]">
+            <h1 className="manga-title mb-5 text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+              <AnimatedName />
               <span className="block text-[0.82em]">Software Engineer</span>
             </h1>
 
-            <div className="max-w-[760px] space-y-3 text-xl leading-8 text-[var(--ink)] sm:text-2xl sm:leading-9">
+            <div className="hero-copy max-w-[760px] space-y-2 text-lg leading-7 text-[var(--ink)] sm:text-xl sm:leading-8">
               <p>Hi, I&apos;m 21, living in Bengaluru, India.</p>
 
               <p>
-                I build working concepts of products and then make them better.
-                I am a full-stack engineer obsessed with coding, and I
-                thoroughly enjoy it.
+                I build <span className="ink-highlight">working concepts</span>{" "}
+                of products, then keep making them better. I&apos;m a full-stack
+                engineer, but I&apos;m especially drawn to{" "}
+                <span className="ink-highlight">backend systems</span>,
+                developer tools, and products born from real friction.
               </p>
 
               <p>
-                My need to build starts from something that I have faced as a
-                problem or something that I am missing.
+                I <span className="ink-highlight">co-founded PRMPT</span>, a
+                prompt optimization tool focused on making AI prompting sharper,
+                cheaper, and more reliable without losing performance.
               </p>
 
               <p>
-                I co-founded PRMPT, a prompt optimization tool. The core problem
-                we are trying to solve is reducing the cost of AI while keeping
-                its performance intact.
+                Most of what I build starts from something I needed myself:
+                <span className="ink-highlight"> Cindr</span> to make movie
+                discovery less annoying, and{" "}
+                <span className="ink-highlight">WebToMD</span> to turn messy web
+                pages into clean Markdown.
               </p>
 
               <p>
-                You can look at my work on GitHub and also read my blogs here.
+                I like taking rough ideas seriously: shipping the first version,
+                breaking parts of it, <span className="ink-highlight">fixing
+                what matters</span>, and repeating until the system actually
+                works.
+              </p>
+
+              <p>
+                You can look at my work on GitHub, read my blogs, or reach out
+                if you&apos;re building something interesting.
               </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <a className="availability-cta text-2xl" href="mailto:prabhatbajpai2005@gmail.com">
                 <span className="availability-dot" />
                 <span>Open to work on interesting problems</span>
@@ -65,9 +77,37 @@ export default function Home() {
           <aside className="relative justify-self-center lg:justify-self-end">
             <div className="portrait-burst" aria-hidden="true" />
             <div className="portrait-panel flex h-[360px] w-[280px] items-center justify-center rounded-[26px] border-[5px] border-[var(--line)] sm:h-[420px] sm:w-[330px]">
-              <span className="rounded-md bg-[var(--paper)] px-5 py-3 text-3xl shadow-sm">
-                Photo here
-              </span>
+              <div className="portrait-image-frame">
+                <svg aria-hidden="true" className="portrait-filter-defs" focusable="false">
+                  <filter id="portrait-pencil-sketch" colorInterpolationFilters="sRGB">
+                    <feColorMatrix type="saturate" values="0" result="gray" />
+                    <feComponentTransfer in="gray" result="poster">
+                      <feFuncR type="discrete" tableValues="0.08 0.22 0.5 0.78 1" />
+                      <feFuncG type="discrete" tableValues="0.08 0.22 0.5 0.78 1" />
+                      <feFuncB type="discrete" tableValues="0.08 0.22 0.5 0.78 1" />
+                    </feComponentTransfer>
+                    <feConvolveMatrix
+                      in="poster"
+                      order="3"
+                      kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1"
+                      divisor="1"
+                      bias="0.58"
+                      result="edges"
+                    />
+                    <feComposite in="poster" in2="edges" operator="arithmetic" k2="0.78" k3="0.42" result="sketch" />
+                    <feComponentTransfer in="sketch">
+                      <feFuncR type="linear" slope="1.35" intercept="-0.08" />
+                      <feFuncG type="linear" slope="1.35" intercept="-0.08" />
+                      <feFuncB type="linear" slope="1.35" intercept="-0.08" />
+                    </feComponentTransfer>
+                  </filter>
+                </svg>
+                <img
+                  alt="Prabhat Bajpai"
+                  className="portrait-image"
+                  src="/images/portrait.png"
+                />
+              </div>
             </div>
           </aside>
         </div>

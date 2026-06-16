@@ -17,9 +17,9 @@ export default function ComicNav() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed left-0 right-0 top-7 z-50 px-8">
-      <nav className="comic-nav mx-auto grid w-full max-w-[900px] grid-cols-[1fr_auto_1fr] items-center gap-8 px-8 py-3 text-lg shadow-sm">
-        <div className="flex min-w-0 justify-start gap-8">
+    <header className="site-header fixed left-0 right-0 top-7 z-50">
+      <nav className="comic-nav mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-lg shadow-sm">
+        <div className="nav-side flex min-w-0 justify-start">
           {LEFT_LINKS.map((link) => (
             <Link
               className="nav-link"
@@ -36,7 +36,7 @@ export default function ComicNav() {
           Prabhat
         </Link>
 
-        <div className="flex min-w-0 justify-end gap-8">
+        <div className="nav-side flex min-w-0 justify-end">
           {RIGHT_LINKS.map((link) => (
             <Link
               className="nav-link"
