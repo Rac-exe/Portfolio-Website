@@ -332,78 +332,121 @@ input {
 }
 
 .katana-control {
-  display: grid;
-  grid-template-columns: 310px;
-  align-items: center;
-  gap: 8px;
-  width: fit-content;
+  width: clamp(270px, 34vw, 360px);
   border: 0;
   border-radius: 0;
   background: transparent;
   padding: 0;
   box-shadow: none;
+  outline: none;
 }
 
-.katana-wrap {
-  position: relative;
-  height: 34px;
-  width: 310px;
+.katana-control:focus-visible {
+  filter: drop-shadow(0 0 0.35rem color-mix(in srgb, var(--accent) 34%, transparent));
 }
 
-.katana-wrap::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 24px;
-  top: 14px;
-  height: 8px;
-  border: 3px solid var(--line);
-  border-right: 0;
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--line) 28%, var(--paper)), color-mix(in srgb, var(--line) 10%, var(--paper))),
-    var(--paper);
-  box-shadow: 2px 2px 0 var(--line);
-}
-
-.katana-blade {
-  position: absolute;
-  right: 24px;
-  top: 15px;
-  height: 5px;
-  width: var(--blade-progress);
-  max-width: 286px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), #ffffff);
-  box-shadow:
-    0 0 12px color-mix(in srgb, var(--accent) 40%, transparent),
-    0 1px 0 #ffffff;
-  transition: width 260ms ease;
-}
-
-.katana-handle {
-  position: absolute;
-  right: calc(var(--blade-progress) + 4px);
-  top: 3px;
-  height: 28px;
-  width: 48px;
-  translate: 12px 0;
-  border: 4px solid var(--line);
-  border-radius: 12px 5px 5px 12px;
-  background:
-    linear-gradient(90deg, var(--line) 0 7px, transparent 7px),
-    repeating-linear-gradient(45deg, var(--accent) 0 4px, var(--paper) 4px 8px);
-  box-shadow: 3px 3px 0 var(--line);
-  transition: right 260ms ease, background-color 260ms ease;
-}
-
-.katana-range {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
+.katana-svg {
+  display: block;
   width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+}
+
+.katana-guide {
+  opacity: 0.36;
+  stroke: var(--line);
+  stroke-dasharray: 2 7;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.katana-blade-shape {
+  fill: color-mix(in srgb, #ffffff 70%, var(--paper));
+  stroke: var(--line);
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 0.32rem color-mix(in srgb, var(--accent) 24%, transparent));
+}
+
+.katana-blade-ridge {
+  fill: none;
+  opacity: 0.75;
+  stroke: color-mix(in srgb, var(--accent) 58%, var(--line));
+  stroke-linecap: round;
+  stroke-width: 1.3;
+}
+
+.katana-sheath {
+  fill: color-mix(in srgb, var(--paper) 58%, var(--line) 8%);
+  stroke: var(--line);
+  stroke-linejoin: round;
+  stroke-width: 2.8;
+}
+
+.katana-endcap,
+.katana-pommel {
+  fill: var(--paper);
+  stroke: var(--line);
+  stroke-width: 2.8;
+}
+
+.katana-endcap-dot,
+.katana-pommel-dot {
+  fill: var(--accent);
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.katana-sheath-band,
+.katana-guard-line,
+.katana-wrap-line {
+  opacity: 0.72;
+  stroke: color-mix(in srgb, var(--line) 70%, var(--accent));
+  stroke-linecap: round;
+}
+
+.katana-sheath-band {
+  stroke-width: 1.4;
+}
+
+.katana-hilt {
   cursor: pointer;
-  opacity: 0;
+  transition: transform 260ms ease;
+}
+
+.katana-control[data-dragging="true"] .katana-hilt {
+  cursor: grabbing;
+  transition: none;
+}
+
+.katana-guard {
+  fill: var(--paper);
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.katana-guard-line {
+  stroke-width: 1.5;
+}
+
+.katana-grip {
+  fill: color-mix(in srgb, var(--accent) 20%, var(--paper));
+  stroke: var(--line);
+  stroke-linejoin: round;
+  stroke-width: 2.8;
+}
+
+.katana-wrap-line {
+  stroke-width: 1.35;
+}
+
+.katana-touch-zone {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 0;
+  pointer-events: all;
 }
 
 @media (max-width: 900px) {
@@ -437,11 +480,7 @@ input {
   }
 
   .katana-control {
-    grid-template-columns: 180px;
-  }
-
-  .katana-wrap {
-    width: 180px;
+    width: min(260px, 72vw);
   }
 }
 
