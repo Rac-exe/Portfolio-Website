@@ -156,14 +156,25 @@ input {
   pointer-events: none;
 }
 
+.site-header {
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+}
+
 .comic-nav {
   position: relative;
+  width: min(860px, calc(100vw - clamp(2rem, 6vw, 5rem)));
+  gap: clamp(1.3rem, 3vw, 2.5rem);
+  padding: 0.72rem clamp(1.1rem, 2.4vw, 2rem);
   border: 3px solid var(--line);
   border-radius: 14px;
   background: var(--nav-bg);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 28px rgba(20, 14, 8, 0.08);
   transition: background-color 260ms ease, border-color 260ms ease;
+}
+
+.nav-side {
+  gap: clamp(1.2rem, 3vw, 2.2rem);
 }
 
 .nav-link {
@@ -216,11 +227,86 @@ input {
   line-height: 1;
 }
 
+.theme-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(2rem, 8vw, 7rem);
+  width: 100%;
+  color: var(--accent);
+  font-size: clamp(0.78rem, 1.05vw, 1.08rem);
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.theme-row p {
+  margin: 0;
+}
+
+.theme-row .katana-control {
+  justify-self: end;
+  width: clamp(170px, 20vw, 240px);
+}
+
 .manga-title {
   font-family: var(--font-title);
   letter-spacing: 0.02em;
   text-transform: none;
   text-shadow: 1px 1px 0 var(--paper), 2px 2px 0 color-mix(in srgb, var(--line) 12%, transparent);
+}
+
+.animated-name {
+  min-height: 1.05em;
+  animation: name-script-swap 420ms ease both;
+}
+
+@keyframes name-script-swap {
+  from {
+    opacity: 0;
+    transform: translateY(0.16em) skewX(-4deg);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) skewX(0);
+    filter: blur(0);
+  }
+}
+
+.hero-copy p {
+  margin-block: 0;
+}
+
+.ink-highlight {
+  position: relative;
+  z-index: 0;
+  display: inline;
+  color: color-mix(in srgb, var(--accent) 72%, var(--ink));
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ink-highlight::after {
+  content: "";
+  position: absolute;
+  left: -0.12em;
+  right: -0.12em;
+  bottom: 0.03em;
+  z-index: -1;
+  height: 0.42em;
+  border-radius: 999px 32px 999px 28px;
+  background:
+    repeating-linear-gradient(
+      110deg,
+      color-mix(in srgb, var(--accent) 22%, transparent) 0 7px,
+      transparent 7px 13px
+    ),
+    color-mix(in srgb, var(--paper) 42%, var(--accent) 20%);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--line) 28%, transparent);
+  transform: rotate(-0.8deg);
 }
 
 .brush-cta {
@@ -285,12 +371,147 @@ input {
 
 .portrait-panel {
   position: relative;
+  overflow: visible;
   background:
     radial-gradient(circle at 30% 25%, var(--wash), transparent 8rem),
     radial-gradient(circle at 70% 70%, var(--sky), transparent 9rem),
     repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in srgb, var(--line) 6%, transparent) 18px 19px),
     var(--portrait-bg);
   transition: background 260ms ease, border-color 260ms ease;
+}
+
+.portrait-image-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--portrait-bg);
+}
+
+.portrait-image-frame::before,
+.portrait-image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 160ms ease, background 160ms ease, mix-blend-mode 160ms ease;
+}
+
+.portrait-image-frame::before {
+  background:
+    radial-gradient(var(--line) 0.8px, transparent 1px),
+    repeating-linear-gradient(
+      103deg,
+      transparent 0 14px,
+      color-mix(in srgb, var(--line) 14%, transparent) 14px 15px
+    );
+  background-size: 8px 8px, 100% 100%;
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+}
+
+.portrait-image-frame::after {
+  background:
+    linear-gradient(135deg, transparent 0 48%, color-mix(in srgb, var(--paper) 32%, transparent) 48% 55%, transparent 55% 100%),
+    radial-gradient(circle at 32% 22%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 38%),
+    color-mix(in srgb, var(--portrait-bg) 24%, transparent);
+  mix-blend-mode: soft-light;
+  opacity: 0.22;
+}
+
+.portrait-filter-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 24%;
+  transition: filter 160ms ease, opacity 160ms ease;
+}
+
+[data-comic-theme="draft"] .portrait-image {
+  filter: url("#portrait-pencil-sketch") grayscale(1) contrast(2.15) brightness(1.2) saturate(0);
+  opacity: 0.82;
+}
+
+[data-comic-theme="draft"] .portrait-image-frame::before {
+  background:
+    radial-gradient(var(--line) 0.75px, transparent 1px),
+    repeating-linear-gradient(
+      78deg,
+      transparent 0 8px,
+      color-mix(in srgb, var(--line) 24%, transparent) 8px 9px
+    ),
+    repeating-linear-gradient(
+      154deg,
+      transparent 0 18px,
+      color-mix(in srgb, var(--line) 12%, transparent) 18px 19px
+    );
+  background-size: 7px 7px, 100% 100%, 100% 100%;
+  mix-blend-mode: multiply;
+  opacity: 0.56;
+}
+
+[data-comic-theme="draft"] .portrait-image-frame::after {
+  background:
+    linear-gradient(color-mix(in srgb, var(--paper) 62%, transparent), color-mix(in srgb, var(--paper) 62%, transparent)),
+    radial-gradient(circle at 52% 22%, transparent 0 28%, color-mix(in srgb, var(--paper) 34%, transparent) 55%),
+    repeating-linear-gradient(
+      102deg,
+      transparent 0 13px,
+      color-mix(in srgb, var(--line) 18%, transparent) 13px 14px
+    );
+  mix-blend-mode: multiply;
+  opacity: 0.46;
+}
+
+[data-comic-theme="paint"] .portrait-image {
+  filter: saturate(1.08) contrast(1.04) brightness(1.01);
+  opacity: 1;
+}
+
+[data-comic-theme="paint"] .portrait-image-frame::before {
+  opacity: 0.13;
+}
+
+[data-comic-theme="paint"] .portrait-image-frame::after {
+  opacity: 0.16;
+}
+
+[data-comic-theme="coffee"] .portrait-image {
+  filter: sepia(0.78) saturate(0.72) contrast(1.18) brightness(0.98);
+  opacity: 0.95;
+}
+
+[data-comic-theme="coffee"] .portrait-image-frame::before {
+  background:
+    radial-gradient(color-mix(in srgb, var(--line) 70%, transparent) 0.8px, transparent 1px),
+    repeating-linear-gradient(
+      102deg,
+      transparent 0 13px,
+      color-mix(in srgb, var(--line) 20%, transparent) 13px 14px
+    );
+  opacity: 0.26;
+}
+
+[data-comic-theme="coffee"] .portrait-image-frame::after {
+  background:
+    linear-gradient(color-mix(in srgb, #8a4f23 22%, transparent), color-mix(in srgb, #8a4f23 22%, transparent)),
+    radial-gradient(circle at 38% 20%, color-mix(in srgb, var(--paper) 28%, transparent), transparent 38%),
+    repeating-linear-gradient(
+      70deg,
+      transparent 0 20px,
+      color-mix(in srgb, var(--line) 11%, transparent) 20px 21px
+    );
+  mix-blend-mode: multiply;
+  opacity: 0.38;
 }
 
 .portrait-panel::before,
@@ -463,6 +684,12 @@ input {
   .comic-nav {
     width: calc(100vw - 40px);
     max-width: 620px;
+    gap: 1rem;
+    padding-inline: 1rem;
+  }
+
+  .nav-side {
+    gap: 1.2rem;
   }
 }
 
@@ -481,6 +708,16 @@ input {
 
   .katana-control {
     width: min(260px, 72vw);
+  }
+
+  .theme-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .theme-row .katana-control {
+    justify-self: start;
+    width: min(230px, 72vw);
   }
 }
 

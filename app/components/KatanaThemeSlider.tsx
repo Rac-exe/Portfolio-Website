@@ -18,10 +18,11 @@ const MAX_PULL = 290;
 const SHEATH_MOUTH_X = 430;
 const BLADE_TIP_X = 145;
 const BLADE_LENGTH = SHEATH_MOUTH_X - BLADE_TIP_X;
+const DEFAULT_THEME_INDEX = 1;
 
 export default function KatanaThemeSlider() {
   const bladeClipId = useId();
-  const [themeIndex, setThemeIndex] = useState(0);
+  const [themeIndex, setThemeIndex] = useState(DEFAULT_THEME_INDEX);
   const [dragProgress, setDragProgress] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -34,16 +35,14 @@ export default function KatanaThemeSlider() {
   const startClientXRef = useRef(0);
   const startProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
-  const dragAudioStartedRef = useRef(false);
   const dragAudioDirectionRef = useRef<"draw" | "sheathe" | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem("comic-theme");
-    const storedIndex = THEMES.indexOf(stored as (typeof THEMES)[number]);
-    const index = storedIndex >= 0 ? storedIndex : 0;
+    const defaultTheme = THEMES[DEFAULT_THEME_INDEX];
 
-    setThemeIndex(index);
-    document.documentElement.dataset.comicTheme = THEMES[index];
+    setThemeIndex(DEFAULT_THEME_INDEX);
+    document.documentElement.dataset.comicTheme = defaultTheme;
+    localStorage.setItem("comic-theme", defaultTheme);
   }, []);
 
   function getAudioContext() {
@@ -196,6 +195,7 @@ export default function KatanaThemeSlider() {
         if (activeSourceRef.current === source) {
           activeSourceRef.current = null;
           activeGainRef.current = null;
+          dragAudioDirectionRef.current = null;
         }
       };
     } catch {
@@ -241,6 +241,14 @@ export default function KatanaThemeSlider() {
     localStorage.setItem("comic-theme", nextTheme);
   }
 
+  function applyThemeInstantly(nextIndex: number) {
+    const nextTheme = THEMES[nextIndex];
+
+    setThemeIndex(nextIndex);
+    document.documentElement.dataset.comicTheme = nextTheme;
+    localStorage.setItem("comic-theme", nextTheme);
+  }
+
   function clampProgress(progress: number) {
     return Math.min(1, Math.max(0, progress));
   }
@@ -259,7 +267,6 @@ export default function KatanaThemeSlider() {
     startClientXRef.current = event.clientX;
     startProgressRef.current = progress;
     currentProgressRef.current = progress;
-    dragAudioStartedRef.current = false;
     dragAudioDirectionRef.current = null;
     setDragProgress(progress);
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -273,20 +280,19 @@ export default function KatanaThemeSlider() {
 
     const dx = (event.clientX - startClientXRef.current) * getSvgScale();
     const nextProgress = clampProgress(startProgressRef.current - dx / MAX_PULL);
+    const progressDelta = nextProgress - currentProgressRef.current;
 
-    if (!dragAudioStartedRef.current && nextProgress > startProgressRef.current + 0.015) {
-      dragAudioStartedRef.current = true;
-      dragAudioDirectionRef.current = "draw";
-      void playBladeAudioSegment(startProgressRef.current, 1);
-    }
+    if (Math.abs(progressDelta) > 0.01) {
+      const nextDirection = progressDelta > 0 ? "draw" : "sheathe";
 
-    if (!dragAudioStartedRef.current && nextProgress < startProgressRef.current - 0.015) {
-      dragAudioStartedRef.current = true;
-      dragAudioDirectionRef.current = "sheathe";
-      void playBladeAudioSegment(startProgressRef.current, 0);
+      if (dragAudioDirectionRef.current !== nextDirection) {
+        dragAudioDirectionRef.current = nextDirection;
+        void playBladeAudioSegment(nextProgress, nextDirection === "draw" ? 1 : 0);
+      }
     }
 
     currentProgressRef.current = nextProgress;
+    applyThemeInstantly(snapProgress(nextProgress));
     setDragProgress(nextProgress);
   }
 
@@ -302,7 +308,6 @@ export default function KatanaThemeSlider() {
     const nextIndex = snapProgress(currentProgressRef.current);
     setDragProgress(null);
     stopActiveAudio();
-    dragAudioStartedRef.current = false;
     dragAudioDirectionRef.current = null;
     updateTheme(nextIndex, false);
   }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageFlipSound from "./components/PageFlipSound";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-comic-theme="draft">
+    <html lang="en" data-comic-theme="paint">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -26,7 +27,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <PageFlipSound />
+        {children}
+      </body>
     </html>
   );
 }
