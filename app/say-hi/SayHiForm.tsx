@@ -1,10 +1,15 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { type FormEvent, type RefObject, useState } from "react";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
-export default function SayHiForm() {
+type SayHiFormProps = {
+  nameInputRef?: RefObject<HTMLInputElement | null>;
+  replyInputRef?: RefObject<HTMLInputElement | null>;
+};
+
+export default function SayHiForm({ nameInputRef, replyInputRef }: SayHiFormProps) {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
 
@@ -53,7 +58,13 @@ export default function SayHiForm() {
 
       <label>
         <span>Name</span>
-        <input maxLength={80} name="name" placeholder="Your name" type="text" />
+        <input
+          maxLength={80}
+          name="name"
+          placeholder="Your name"
+          ref={nameInputRef}
+          type="text"
+        />
       </label>
 
       <label>
@@ -62,6 +73,7 @@ export default function SayHiForm() {
           maxLength={160}
           name="reply"
           placeholder="@username or https://..."
+          ref={replyInputRef}
           required
           type="text"
         />

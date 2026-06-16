@@ -1,6 +1,6 @@
 import ComicNav from "../components/ComicNav";
 import ComicScrollFrame from "../components/ComicScrollFrame";
-import SayHiForm from "./SayHiForm";
+import SayHiContent from "./SayHiContent";
 
 const SOCIALS = [
   {
@@ -43,45 +43,7 @@ export default function SayHiPage() {
         <ComicScrollFrame className="flex flex-col px-8 pb-12 pt-6 sm:px-12 md:px-20 lg:px-24">
           <ComicNav />
 
-          <div className="say-hi-layout">
-            <section className="say-hi-intro">
-              <p className="text-lg tracking-[0.18em] text-[var(--accent)]">
-                EMAIL / X / BUILDING THINGS
-              </p>
-              <h1 className="manga-title mt-3 text-5xl leading-tight md:text-6xl">
-                Say Hi
-              </h1>
-              <p>
-                Best way to connect with me is through{" "}
-                <a href="mailto:prabhatbajpai2005@gmail.com">email</a> or{" "}
-                <a href="https://x.com/PrabhatAstrix" rel="noopener" target="_blank">
-                  X
-                </a>
-                . Send context, a link, or just the thing you want to talk about.
-              </p>
-              <div className="say-hi-direct-links">
-                <a className="comic-button px-5 py-2 text-xl" href="mailto:prabhatbajpai2005@gmail.com">
-                  Email me
-                </a>
-                <a
-                  className="comic-button px-5 py-2 text-xl"
-                  href="https://x.com/PrabhatAstrix"
-                  rel="noopener"
-                  target="_blank"
-                >
-                  DM on X
-                </a>
-              </div>
-            </section>
-
-            <section className="say-hi-panel">
-              <h2>Drop a message</h2>
-              <p>
-                Add one valid social/contact link so I know where to reply.
-              </p>
-              <SayHiForm />
-            </section>
-          </div>
+          <SayHiContent />
 
           <section className="say-hi-socials" aria-label="Social links">
             {SOCIALS.map((social) => (
@@ -95,7 +57,6 @@ export default function SayHiPage() {
                 <svg aria-hidden="true" viewBox="0 0 24 24">
                   {social.icon}
                 </svg>
-                <span>{social.label}</span>
               </a>
             ))}
           </section>
