@@ -1,13 +1,16 @@
 import AnimatedName from "./components/AnimatedName";
 import ComicNav from "./components/ComicNav";
+import ComicScrollFrame from "./components/ComicScrollFrame";
 import KatanaThemeSlider from "./components/KatanaThemeSlider";
 
 export default function Home() {
   return (
-    <main className="comic-stage">
-      <ComicNav />
+    <main className="comic-stage comic-scroll-stage">
+      <section className="comic-page comic-scroll-frame">
+        <ComicScrollFrame className="flex flex-col px-8 pb-12 pt-6 sm:px-12 md:px-20 lg:px-24">
+          <ComicNav />
 
-      <section className="comic-page flex flex-col justify-center px-8 pb-12 pt-32 sm:px-12 md:px-20 lg:px-24">
+          <div className="flex flex-1 flex-col justify-center">
         <div className="theme-row mb-6">
           <p>BUILD / BREAK / FIX / REPEAT</p>
           <KatanaThemeSlider />
@@ -59,7 +62,7 @@ export default function Home() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <a className="availability-cta text-2xl" href="mailto:prabhatbajpai2005@gmail.com">
+              <a className="availability-cta text-2xl" href="/say-hi">
                 <span className="availability-dot" />
                 <span>Open to work on interesting problems</span>
               </a>
@@ -111,6 +114,8 @@ export default function Home() {
             </div>
           </aside>
         </div>
+          </div>
+        </ComicScrollFrame>
       </section>
     </main>
   );
