@@ -668,6 +668,16 @@ a.ink-link:hover {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Per-theme rules on .portrait-image have specificity (0,2,0) and inadvertently
+   override the opacity:0 above (0,1,0). Explicitly re-hide manga in every
+   non-draft theme at higher specificity (0,3,0) so it stays invisible. */
+[data-comic-theme="paint"] .portrait-image-manga,
+[data-comic-theme="coffee"] .portrait-image-manga,
+[data-comic-theme="noir"] .portrait-image-manga {
+  opacity: 0;
+  pointer-events: none;
+}
 [data-comic-theme="draft"] .portrait-image-default {
   opacity: 0;
   pointer-events: none;
