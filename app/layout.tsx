@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import ComicThemePersistence from "./components/ComicThemePersistence";
 import PageFlipSound from "./components/PageFlipSound";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({
         <ComicThemePersistence />
         <PageFlipSound />
         {children}
+        <Analytics />
       </body>
     </html>
   );
