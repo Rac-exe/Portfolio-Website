@@ -958,7 +958,7 @@ a.ink-link:hover {
 
 .blog-article-meta {
   color: var(--accent);
-  font-size: 1rem;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -995,6 +995,7 @@ a.ink-link:hover {
   color: var(--ink);
   font-size: clamp(1.18rem, 1.8vw, 1.32rem);
   line-height: 1.76;
+  text-align: justify;
 }
 
 .blog-article-body p + p,
@@ -1026,6 +1027,11 @@ a.ink-link:hover {
   opacity: 0.5;
 }
 
+.blog-article-body strong {
+  color: var(--accent);
+  font-weight: 900;
+}
+
 .blog-article-body a {
   color: var(--accent);
   font-weight: 800;
@@ -1044,7 +1050,7 @@ a.ink-link:hover {
 }
 
 .article-highlight {
-  color: var(--ink);
+  color: var(--accent);
   font-weight: 900;
 }
 
