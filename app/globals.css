@@ -19,7 +19,7 @@
   --sky: rgba(39, 76, 119, 0.08);
   --portrait-bg: #f8f0e3;
   --nav-bg: rgba(255, 250, 240, 0.9);
-  --dot-opacity: 0.18;
+  --dot-opacity: 0;
   --blade-progress: 0%;
 }
 
@@ -36,7 +36,7 @@
   --sky: rgba(0, 0, 0, 0.045);
   --portrait-bg: #fafaf5;
   --nav-bg: rgba(255, 254, 248, 0.92);
-  --dot-opacity: 0.32;
+  --dot-opacity: 0;
   --blade-progress: 0%;
 }
 
@@ -53,7 +53,7 @@
   --sky: rgba(30, 80, 160, 0.12);
   --portrait-bg: #f0cda8;
   --nav-bg: rgba(255, 250, 242, 0.94);
-  --dot-opacity: 0.11;
+  --dot-opacity: 0;
   --blade-progress: 33%;
 }
 
@@ -70,7 +70,7 @@
   --sky: rgba(85, 47, 19, 0.12);
   --portrait-bg: #e8d5b0;
   --nav-bg: rgba(250, 243, 224, 0.95);
-  --dot-opacity: 0.2;
+  --dot-opacity: 0;
   --blade-progress: 66%;
 }
 
@@ -87,7 +87,7 @@
   --sky: rgba(245, 197, 24, 0.06);
   --portrait-bg: #252525;
   --nav-bg: rgba(28, 28, 28, 0.96);
-  --dot-opacity: 0.5;
+  --dot-opacity: 0;
   --blade-progress: 100%;
 }
 
@@ -109,6 +109,7 @@ body {
     linear-gradient(135deg, var(--page-bg), var(--paper-deep));
   color: var(--ink);
   font-family: var(--font-body);
+  letter-spacing: -0.01em;
   transition: background 260ms ease, color 260ms ease;
 }
 
@@ -437,7 +438,7 @@ input {
   width: 100%;
   color: var(--accent);
   font-size: clamp(0.78rem, 1.05vw, 1.08rem);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -796,7 +797,7 @@ a.ink-link:hover {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: calc(var(--dot-opacity) + 0.04);
+  opacity: 0;
   pointer-events: none;
   background-image:
     radial-gradient(var(--line) 0.7px, transparent 0.8px),
@@ -864,7 +865,7 @@ a.ink-link:hover {
 
 .project-details {
   margin-top: 0.75rem;
-  color: var(--ink-soft);
+  color: var(--ink);
   font-size: 1.08rem;
   line-height: 1.55;
 }
@@ -918,7 +919,7 @@ a.ink-link:hover {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: calc(var(--dot-opacity) + 0.02);
+  opacity: 0;
   pointer-events: none;
   background-image:
     radial-gradient(var(--line) 0.7px, transparent 0.8px),
@@ -955,7 +956,7 @@ a.ink-link:hover {
   color: var(--accent);
   font-size: 0.58rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -967,11 +968,7 @@ a.ink-link:hover {
 }
 
 .blog-row-copy p {
-  margin-top: 0.18rem;
-  max-width: 620px;
-  color: var(--ink-soft);
-  font-size: 0.64rem;
-  line-height: 1.35;
+  display: none;
 }
 
 .blog-row-arrow {
@@ -1028,7 +1025,7 @@ a.ink-link:hover {
 .blog-article-excerpt {
   margin-top: 0.85rem;
   max-width: 620px;
-  color: var(--ink-soft);
+  color: var(--ink);
   font-size: 1.12rem;
   line-height: 1.5;
 }
@@ -1109,7 +1106,7 @@ a.ink-link:hover {
 
 .say-hi-intro p:not(:first-child) {
   margin-top: 1rem;
-  color: var(--ink-soft);
+  color: var(--ink);
   font-size: clamp(1.15rem, 1.8vw, 1.35rem);
   line-height: 1.65;
 }
@@ -1150,7 +1147,7 @@ a.ink-link:hover {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: calc(var(--dot-opacity) + 0.02);
+  opacity: 0;
   pointer-events: none;
   background-image:
     radial-gradient(var(--line) 0.7px, transparent 0.8px),
@@ -1638,10 +1635,6 @@ a.ink-link:hover {
   .blog-row-copy h2 {
     font-size: 1rem;
     line-height: 1.1;
-  }
-
-  .blog-row-copy p {
-    font-size: 0.7rem;
   }
 
   .say-hi-layout {
