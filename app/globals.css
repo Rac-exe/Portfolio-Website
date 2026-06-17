@@ -466,32 +466,21 @@ input {
 }
 
 .ink-highlight {
-  position: relative;
-  z-index: 0;
   display: inline;
-  color: color-mix(in srgb, var(--accent) 72%, var(--ink));
-  font-weight: 800;
-  white-space: nowrap;
+  color: var(--accent);
+  font-weight: 900;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
 }
 
-.ink-highlight::after {
-  content: "";
-  position: absolute;
-  left: -0.12em;
-  right: -0.12em;
-  bottom: 0.03em;
-  z-index: -1;
-  height: 0.42em;
-  border-radius: 999px 32px 999px 28px;
-  background:
-    repeating-linear-gradient(
-      110deg,
-      color-mix(in srgb, var(--accent) 22%, transparent) 0 7px,
-      transparent 7px 13px
-    ),
-    color-mix(in srgb, var(--paper) 42%, var(--accent) 20%);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--line) 28%, transparent);
-  transform: rotate(-0.8deg);
+a.ink-link {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+a.ink-link:hover {
+  opacity: 0.8;
 }
 
 .brush-cta {
@@ -999,7 +988,7 @@ input {
   margin-top: 0.85rem;
   max-width: 620px;
   color: var(--ink-soft);
-  font-size: 0.9rem;
+  font-size: 1.12rem;
   line-height: 1.5;
 }
 
@@ -1011,8 +1000,8 @@ input {
 .blog-article-body p,
 .blog-article-body li {
   color: var(--ink);
-  font-size: clamp(0.88rem, 1vw, 0.98rem);
-  line-height: 1.68;
+  font-size: clamp(1.18rem, 1.8vw, 1.32rem);
+  line-height: 1.76;
 }
 
 .blog-article-body p + p,
@@ -1062,14 +1051,6 @@ input {
 }
 
 .article-highlight {
-  border-radius: 0.35rem 0.18rem 0.42rem 0.16rem;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0 44%,
-      color-mix(in srgb, var(--accent) 24%, var(--paper)) 44% 82%,
-      transparent 82% 100%
-    );
   color: var(--ink);
   font-weight: 900;
 }
@@ -1530,9 +1511,6 @@ input {
     line-height: 1.38 !important;
   }
 
-  .ink-highlight {
-    white-space: normal;
-  }
 
   .availability-cta {
     max-width: 100%;
@@ -1698,7 +1676,7 @@ input {
 
   .blog-article-body p,
   .blog-article-body li {
-    font-size: 1.08rem;
+    font-size: 1.18rem;
   }
 }
 
