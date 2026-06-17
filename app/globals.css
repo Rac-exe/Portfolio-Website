@@ -30,8 +30,8 @@
   --ink: #101010;
   --ink-soft: #383838;
   --line: #121212;
-  --accent: #101010;
-  --accent-2: #505050;
+  --accent: #c0392b;
+  --accent-2: #2c3e50;
   --wash: rgba(0, 0, 0, 0.07);
   --sky: rgba(0, 0, 0, 0.045);
   --portrait-bg: #fafaf5;
@@ -41,36 +41,53 @@
 }
 
 [data-comic-theme="paint"] {
-  --page-bg: #f0e6df;
-  --paper: #fff2dc;
-  --paper-deep: #eec39d;
-  --ink: #201320;
-  --ink-soft: #5a3d58;
+  --page-bg: #f5ede3;
+  --paper: #fffaf2;
+  --paper-deep: #f0dcc8;
+  --ink: #1a1009;
+  --ink-soft: #5c4a3a;
   --line: #26131c;
-  --accent: #e1332f;
-  --accent-2: #2566c6;
-  --wash: rgba(225, 51, 47, 0.32);
-  --sky: rgba(37, 102, 198, 0.26);
-  --portrait-bg: #f3c79d;
-  --nav-bg: rgba(255, 242, 220, 0.94);
+  --accent: #d63a2f;
+  --accent-2: #1e50a0;
+  --wash: rgba(214, 58, 47, 0.18);
+  --sky: rgba(30, 80, 160, 0.12);
+  --portrait-bg: #f0cda8;
+  --nav-bg: rgba(255, 250, 242, 0.94);
   --dot-opacity: 0.11;
-  --blade-progress: 50%;
+  --blade-progress: 33%;
 }
 
 [data-comic-theme="coffee"] {
-  --page-bg: #d5b991;
-  --paper: #f2dfbd;
-  --paper-deep: #c99f68;
-  --ink: #2a180c;
-  --ink-soft: #67411f;
+  --page-bg: #ede0c8;
+  --paper: #faf3e0;
+  --paper-deep: #dfc89a;
+  --ink: #221508;
+  --ink-soft: #5c3d1e;
   --line: #2f1a0d;
-  --accent: #7e4219;
+  --accent: #a0470f;
   --accent-2: #4d2c16;
-  --wash: rgba(112, 57, 20, 0.34);
-  --sky: rgba(85, 47, 19, 0.17);
-  --portrait-bg: #d1a56e;
-  --nav-bg: rgba(242, 223, 189, 0.95);
+  --wash: rgba(140, 75, 20, 0.22);
+  --sky: rgba(85, 47, 19, 0.12);
+  --portrait-bg: #e8d5b0;
+  --nav-bg: rgba(250, 243, 224, 0.95);
   --dot-opacity: 0.2;
+  --blade-progress: 66%;
+}
+
+[data-comic-theme="noir"] {
+  --page-bg: #111111;
+  --paper: #1c1c1c;
+  --paper-deep: #252525;
+  --ink: #f0f0f0;
+  --ink-soft: #a0a0a0;
+  --line: #e0e0e0;
+  --accent: #5b9cf6;
+  --accent-2: #a78bfa;
+  --wash: rgba(91, 156, 246, 0.12);
+  --sky: rgba(167, 139, 250, 0.09);
+  --portrait-bg: #252525;
+  --nav-bg: rgba(28, 28, 28, 0.96);
+  --dot-opacity: 0.5;
   --blade-progress: 100%;
 }
 
@@ -686,6 +703,30 @@ a.ink-link:hover {
     );
   mix-blend-mode: multiply;
   opacity: 0.38;
+}
+
+[data-comic-theme="noir"] .portrait-image {
+  filter: grayscale(1) contrast(1.2) brightness(0.88);
+  opacity: 0.92;
+}
+
+[data-comic-theme="noir"] .portrait-image-frame::before {
+  background:
+    radial-gradient(color-mix(in srgb, var(--line) 40%, transparent) 0.8px, transparent 1px),
+    repeating-linear-gradient(
+      102deg,
+      transparent 0 13px,
+      color-mix(in srgb, var(--line) 12%, transparent) 13px 14px
+    );
+  opacity: 0.18;
+}
+
+[data-comic-theme="noir"] .portrait-image-frame::after {
+  background:
+    linear-gradient(135deg, transparent 0 48%, color-mix(in srgb, var(--paper) 18%, transparent) 48% 55%, transparent 55% 100%),
+    radial-gradient(circle at 32% 22%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 38%);
+  mix-blend-mode: screen;
+  opacity: 0.22;
 }
 
 .portrait-panel::before,
