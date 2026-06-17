@@ -24,35 +24,59 @@ export default function Home() {
             </h1>
 
             <div className="hero-copy max-w-[760px] space-y-2 text-lg leading-7 text-[var(--ink)] sm:text-xl sm:leading-8">
-              <p>Hi, I&apos;m 21, living in Bengaluru, India.</p>
+              <p>
+                Hi, I&apos;m 21, living in{" "}
+                <span className="ink-highlight">Bengaluru</span>, India.
+              </p>
 
               <p>
-                I build <span className="ink-highlight">working concepts</span>{" "}
-                of products, then keep making them better. I&apos;m a full-stack
-                engineer, but I&apos;m especially drawn to{" "}
+                I build products, then keep making them better. I&apos;m a{" "}
+                <span className="ink-highlight">full-stack</span> engineer, but
+                I&apos;m especially drawn to{" "}
                 <span className="ink-highlight">backend systems</span>,
                 developer tools, and products born from real friction.
               </p>
 
               <p>
-                I <span className="ink-highlight">co-founded PRMPT</span>, a
-                prompt optimization tool focused on making AI prompting sharper,
-                cheaper, and more reliable without losing performance.
+                I{" "}
+                <a
+                  className="ink-highlight ink-link"
+                  href="https://tryprmpt.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  co-founded PRMPT
+                </a>
+                , a prompt optimization tool focused on making AI prompting
+                sharper, cheaper, and more reliable without losing performance.
               </p>
 
               <p>
-                Most of what I build starts from something I needed myself:
-                <span className="ink-highlight"> Cindr</span> to make movie
-                discovery less annoying, and{" "}
-                <span className="ink-highlight">WebToMD</span> to turn messy web
-                pages into clean Markdown.
+                Most of what I build starts from something I needed myself:{" "}
+                <a
+                  className="ink-highlight ink-link"
+                  href="https://cindr-red.vercel.app"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Cindr
+                </a>{" "}
+                to make movie discovery less annoying, and{" "}
+                <a
+                  className="ink-highlight ink-link"
+                  href="https://web-to-md-website.vercel.app"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  WebToMD
+                </a>{" "}
+                to turn messy web pages into clean Markdown.
               </p>
 
               <p>
                 I like taking rough ideas seriously: shipping the first version,
-                breaking parts of it, <span className="ink-highlight">fixing
-                what matters</span>, and repeating until the system actually
-                works.
+                breaking parts of it, fixing what matters, and repeating until
+                the system actually works.
               </p>
 
               <p>
