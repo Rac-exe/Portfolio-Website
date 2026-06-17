@@ -663,13 +663,19 @@ a.ink-link:hover {
   transition: filter 350ms ease, opacity 350ms ease;
 }
 
-/* Draft shows manga portrait; all other themes show the default portrait.
-   display:none is used intentionally — it cannot be overridden by filter or
-   opacity rules on other classes, making this impossible to break by cascade. */
-.portrait-image-manga { display: none; }
-[data-comic-theme="draft"] .portrait-image-default { display: none; }
+/* Portrait crossfade. Per-theme rules target .portrait-image-default only,
+   so nothing can accidentally override these opacity values. */
+.portrait-image-manga {
+  opacity: 0;
+  pointer-events: none;
+}
+[data-comic-theme="draft"] .portrait-image-default {
+  opacity: 0;
+  pointer-events: none;
+}
 [data-comic-theme="draft"] .portrait-image-manga {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
   object-position: 50% 18%;
   filter: none;
 }
