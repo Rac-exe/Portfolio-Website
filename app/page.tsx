@@ -31,7 +31,7 @@ export default function Home() {
 
               <p>
                 I build products, then keep making them better. I&apos;m a{" "}
-                <span className="ink-highlight">full-stack</span> engineer, but
+                <span className="ink-highlight">full-stack </span> engineer, but
                 I&apos;m especially drawn to{" "}
                 <span className="ink-highlight">backend systems</span>,
                 developer tools, and products born from real friction.
