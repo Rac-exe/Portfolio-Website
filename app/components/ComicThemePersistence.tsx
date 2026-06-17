@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const THEMES = ["draft", "paint", "coffee"] as const;
+const THEMES = ["draft", "paint", "coffee", "noir"] as const;
 const DEFAULT_THEME = "paint";
 const THEME_STORAGE_KEY = "comic-theme";
 

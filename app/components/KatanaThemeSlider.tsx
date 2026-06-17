@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-const THEMES = ["draft", "paint", "coffee"] as const;
+const THEMES = ["draft", "paint", "coffee", "noir"] as const;
 const UNSHEATHE_AUDIO_SRC = "/audio/sword-katana-unsheathing-sound-effect_A_minor.mp3";
 const AUDIO_START_RATIO = 0.04;
 const AUDIO_END_RATIO = 0.92;
