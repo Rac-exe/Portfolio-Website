@@ -669,15 +669,7 @@ a.ink-link:hover {
   pointer-events: none;
 }
 
-/* Per-theme rules on .portrait-image have specificity (0,2,0) and inadvertently
-   override the opacity:0 above (0,1,0). Explicitly re-hide manga in every
-   non-draft theme at higher specificity (0,3,0) so it stays invisible. */
-[data-comic-theme="paint"] .portrait-image-manga,
-[data-comic-theme="coffee"] .portrait-image-manga,
-[data-comic-theme="noir"] .portrait-image-manga {
-  opacity: 0;
-  pointer-events: none;
-}
+
 [data-comic-theme="draft"] .portrait-image-default {
   opacity: 0;
   pointer-events: none;
@@ -710,7 +702,7 @@ a.ink-link:hover {
   transform: rotate(-2.5deg);
 }
 
-[data-comic-theme="paint"] .portrait-image {
+[data-comic-theme="paint"] .portrait-image-default {
   filter: saturate(1.08) contrast(1.04) brightness(1.01);
   opacity: 1;
 }
@@ -723,7 +715,7 @@ a.ink-link:hover {
   opacity: 0.16;
 }
 
-[data-comic-theme="coffee"] .portrait-image {
+[data-comic-theme="coffee"] .portrait-image-default {
   filter: sepia(0.78) saturate(0.72) contrast(1.18) brightness(0.98);
   opacity: 0.95;
 }
@@ -752,7 +744,7 @@ a.ink-link:hover {
   opacity: 0.38;
 }
 
-[data-comic-theme="noir"] .portrait-image {
+[data-comic-theme="noir"] .portrait-image-default {
   filter: grayscale(1) contrast(1.2) brightness(0.88);
   opacity: 0.92;
 }
