@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ComicThemePersistence from "./components/ComicThemePersistence";
 import PageFlipSound from "./components/PageFlipSound";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ComicThemePersistence />
         <PageFlipSound />
         {children}
       </body>
