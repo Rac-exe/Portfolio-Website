@@ -16,7 +16,7 @@ export default function AnimatedName() {
   const [name, setName] = useState<string>(CASCADE[0]);
 
   useEffect(() => {
-    const timers: ReturnType<typeof window.setTimeout>[] = [];
+    const timers: number[] = [];
 
     function runCascade(baseDelay: number) {
       CASCADE.slice(1).forEach((n, i) => {
