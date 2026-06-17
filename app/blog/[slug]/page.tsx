@@ -130,10 +130,10 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             </Link>
 
             <header>
-              <p className="text-lg tracking-[0.18em] text-[var(--accent)]">
+              <p className="blog-article-meta">
                 {formatBlogDate(post.date)} / {post.readingTime}
               </p>
-              <h1 className="manga-title mt-3 max-w-3xl text-3xl leading-tight sm:text-4xl">
+              <h1 className="manga-title mt-3 max-w-4xl text-3xl leading-tight sm:text-4xl">
                 {post.title}
               </h1>
               <p className="blog-article-excerpt">{post.excerpt}</p>
