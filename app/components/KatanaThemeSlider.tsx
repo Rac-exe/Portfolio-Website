@@ -170,11 +170,19 @@ export default function KatanaThemeSlider() {
       return;
     }
 
+    // Skip if the buffer is not ready yet — pre-warm in onPointerDown ensures
+    // it is usually loaded by the time the first move fires.
+    if (!audioBufferRef.current) {
+      return;
+    }
+
     try {
       const context = getAudioContext();
 
+      // Only skip if still suspended — onPointerDown fires resume() inside the
+      // user-gesture so the context should already be running by here.
       if (context.state === "suspended") {
-        await context.resume();
+        return;
       }
 
       const buffer = await loadUnsheatheBuffer(context);
@@ -278,6 +286,18 @@ export default function KatanaThemeSlider() {
     setDragProgress(progress);
     event.currentTarget.setPointerCapture(event.pointerId);
     event.preventDefault();
+
+    // Pre-warm audio inside the user-gesture handler so mobile browsers unlock
+    // the AudioContext immediately, and the buffer fetch starts before dragging.
+    try {
+      const ctx = getAudioContext();
+      if (ctx.state === "suspended") {
+        void ctx.resume();
+      }
+      void loadUnsheatheBuffer(ctx);
+    } catch {
+      // Non-fatal — audio will fall back to the oscillator if this fails.
+    }
   }
 
   function onPointerMove(event: PointerEvent<SVGGElement>) {
