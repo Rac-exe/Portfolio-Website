@@ -81,10 +81,10 @@
   --ink: #f0f0f0;
   --ink-soft: #a0a0a0;
   --line: #e0e0e0;
-  --accent: #5b9cf6;
-  --accent-2: #a78bfa;
-  --wash: rgba(91, 156, 246, 0.12);
-  --sky: rgba(167, 139, 250, 0.09);
+  --accent: #f5c518;
+  --accent-2: #e0a800;
+  --wash: rgba(245, 197, 24, 0.10);
+  --sky: rgba(245, 197, 24, 0.06);
   --portrait-bg: #252525;
   --nav-bg: rgba(28, 28, 28, 0.96);
   --dot-opacity: 0.5;
