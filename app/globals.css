@@ -92,6 +92,22 @@
   --blade-progress: 100%;
 }
 
+/* Register color tokens as typed properties so browsers can interpolate them
+   across theme changes — this makes every element using var(--paper) etc.
+   automatically cross-fade without needing per-element transition rules. */
+@property --paper       { syntax: '<color>'; inherits: true; initial-value: #fffaf0; }
+@property --paper-deep  { syntax: '<color>'; inherits: true; initial-value: #f1eadb; }
+@property --page-bg     { syntax: '<color>'; inherits: true; initial-value: #f3efe4; }
+@property --ink         { syntax: '<color>'; inherits: true; initial-value: #171717; }
+@property --ink-soft    { syntax: '<color>'; inherits: true; initial-value: #3e3e3e; }
+@property --line        { syntax: '<color>'; inherits: true; initial-value: #141414; }
+@property --accent      { syntax: '<color>'; inherits: true; initial-value: #d14331; }
+@property --accent-2    { syntax: '<color>'; inherits: true; initial-value: #274c77; }
+@property --wash        { syntax: '<color>'; inherits: true; initial-value: rgba(209, 67, 49, 0.13); }
+@property --sky         { syntax: '<color>'; inherits: true; initial-value: rgba(39, 76, 119, 0.08); }
+@property --portrait-bg { syntax: '<color>'; inherits: true; initial-value: #f8f0e3; }
+@property --nav-bg      { syntax: '<color>'; inherits: true; initial-value: rgba(255, 250, 240, 0.9); }
+
 * {
   box-sizing: border-box;
 }
@@ -99,6 +115,22 @@
 html,
 body {
   min-height: 100%;
+}
+
+html {
+  transition:
+    --paper 350ms ease,
+    --paper-deep 350ms ease,
+    --page-bg 350ms ease,
+    --ink 350ms ease,
+    --ink-soft 350ms ease,
+    --line 350ms ease,
+    --accent 350ms ease,
+    --accent-2 350ms ease,
+    --wash 350ms ease,
+    --sky 350ms ease,
+    --portrait-bg 350ms ease,
+    --nav-bg 350ms ease;
 }
 
 body {
@@ -111,7 +143,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   letter-spacing: -0.025em;
-  transition: background 260ms ease, color 260ms ease;
+  transition: background 350ms ease, color 350ms ease;
 }
 
 html:has(.comic-scroll-stage),
@@ -161,7 +193,7 @@ input {
     radial-gradient(circle at 86% 82%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 13rem),
     var(--paper);
   box-shadow: 0 28px 80px rgba(20, 14, 8, 0.14);
-  transition: background 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+  transition: background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
 }
 
 .comic-page-scroll,
@@ -622,21 +654,29 @@ a.ink-link:hover {
 }
 
 .portrait-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 24%;
-  transition: filter 160ms ease, opacity 160ms ease;
+  transition: filter 350ms ease, opacity 350ms ease;
 }
 
-/* Draft: show manga image, hide default portrait */
-.portrait-image-manga { display: none; }
-[data-comic-theme="draft"] .portrait-image-default { display: none; }
+/* Draft: cross-fade between portraits using opacity so the transition is smooth */
+.portrait-image-manga {
+  opacity: 0;
+  pointer-events: none;
+}
+[data-comic-theme="draft"] .portrait-image-default {
+  opacity: 0;
+  pointer-events: none;
+}
 [data-comic-theme="draft"] .portrait-image-manga {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
   object-position: 50% 18%;
   filter: none;
-  opacity: 1;
 }
 
 
