@@ -131,8 +131,13 @@ export default function Home() {
                 </svg>
                 <img
                   alt="Prabhat Bajpai"
-                  className="portrait-image"
+                  className="portrait-image portrait-image-default"
                   src="/images/portrait.png"
+                />
+                <img
+                  alt="Prabhat Bajpai"
+                  className="portrait-image portrait-image-manga"
+                  src="/images/portrait-manga.png"
                 />
               </div>
             </div>
