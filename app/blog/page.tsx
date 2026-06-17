@@ -13,7 +13,7 @@ export default async function BlogPage() {
         <ComicScrollFrame className="flex flex-col px-8 pb-12 pt-6 sm:px-12 md:px-20 lg:px-24">
           <ComicNav />
           <div className="blog-header">
-            <p className="text-lg tracking-[0.18em] text-[var(--accent)]">
+            <p className="blog-header-eyebrow">
               NOTES / BREAKDOWNS / LEARNINGS
             </p>
             <h1 className="manga-title mt-3 text-5xl leading-tight md:text-6xl">
@@ -27,24 +27,13 @@ export default async function BlogPage() {
 
           {posts.length > 0 ? (
             <div className="blog-list mt-10">
-              {posts.map((post, index) => (
-                <article className="blog-row" key={post.slug}>
-                  <div className="blog-row-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                  <div className="blog-row-copy">
-                    <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
-                    <h2>{post.title}</h2>
-                    <p>{post.excerpt}</p>
-                  </div>
-                  <Link
-                    aria-label={`Read ${post.title}`}
-                    className="blog-row-arrow"
-                    href={`/blog/${post.slug}`}
-                  >
-                    →
-                  </Link>
-                </article>
+              {posts.map((post) => (
+                <Link className="blog-row" href={`/blog/${post.slug}`} key={post.slug}>
+                  <span className="blog-row-title">{post.title}</span>
+                  <time className="blog-row-date" dateTime={post.date}>
+                    {formatBlogDate(post.date)}
+                  </time>
+                </Link>
               ))}
             </div>
           ) : (
