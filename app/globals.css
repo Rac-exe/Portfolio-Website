@@ -663,20 +663,13 @@ a.ink-link:hover {
   transition: filter 350ms ease, opacity 350ms ease;
 }
 
-/* Draft: cross-fade between portraits using opacity so the transition is smooth */
-.portrait-image-manga {
-  opacity: 0;
-  pointer-events: none;
-}
-
-
-[data-comic-theme="draft"] .portrait-image-default {
-  opacity: 0;
-  pointer-events: none;
-}
+/* Draft shows manga portrait; all other themes show the default portrait.
+   display:none is used intentionally — it cannot be overridden by filter or
+   opacity rules on other classes, making this impossible to break by cascade. */
+.portrait-image-manga { display: none; }
+[data-comic-theme="draft"] .portrait-image-default { display: none; }
 [data-comic-theme="draft"] .portrait-image-manga {
-  opacity: 1;
-  pointer-events: auto;
+  display: block;
   object-position: 50% 18%;
   filter: none;
 }
@@ -704,7 +697,6 @@ a.ink-link:hover {
 
 [data-comic-theme="paint"] .portrait-image-default {
   filter: saturate(1.08) contrast(1.04) brightness(1.01);
-  opacity: 1;
 }
 
 [data-comic-theme="paint"] .portrait-image-frame::before {
