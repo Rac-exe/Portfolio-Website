@@ -16,7 +16,7 @@ const AUDIO_END_RATIO = 0.92;
 const VIEWBOX_WIDTH = 680;
 const MAX_PULL = 290;
 const SHEATH_MOUTH_X = 430;
-const BLADE_TIP_X = 145;
+const BLADE_TIP_X = 143;
 const BLADE_LENGTH = SHEATH_MOUTH_X - BLADE_TIP_X;
 const DEFAULT_THEME_INDEX = 1;
 const THEME_STORAGE_KEY = "comic-theme";
@@ -366,6 +366,8 @@ export default function KatanaThemeSlider() {
   const exposedBlade = progress * BLADE_LENGTH;
   const clipX = SHEATH_MOUTH_X - exposedBlade;
   const snappedValue = snapProgress(progress);
+  const showBladeTip = clipX <= BLADE_TIP_X;
+  const clipRight = showBladeTip ? 432 : SHEATH_MOUTH_X;
 
   return (
     <div
@@ -389,7 +391,7 @@ export default function KatanaThemeSlider() {
       >
         <defs>
           <clipPath id={bladeClipId}>
-            <rect x={clipX} y="46" width={exposedBlade} height="58" />
+            <rect x={clipX} y="46" width={Math.max(0, clipRight - clipX)} height="58" />
           </clipPath>
         </defs>
 
@@ -398,7 +400,11 @@ export default function KatanaThemeSlider() {
         <g clipPath={`url(#${bladeClipId})`}>
           <path
             className="katana-blade-shape"
-            d="M 144 68 L 418 68 C 424 70, 429 72, 432 75 C 429 78, 424 80, 418 82 L 144 82 Z"
+            d={
+              showBladeTip
+                ? "M 143 68 L 418 68 C 424 70, 429 72, 432 75 C 429 78, 424 80, 418 82 L 143 82 Z"
+                : "M 143 68 L 430 68 L 430 82 L 143 82 Z"
+            }
           />
           <path className="katana-blade-ridge" d="M 158 75 C 238 73, 342 73, 424 74" />
         </g>
