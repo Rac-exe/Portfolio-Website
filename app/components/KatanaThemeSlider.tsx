@@ -19,6 +19,11 @@ const SHEATH_MOUTH_X = 430;
 const BLADE_TIP_X = 145;
 const BLADE_LENGTH = SHEATH_MOUTH_X - BLADE_TIP_X;
 const DEFAULT_THEME_INDEX = 1;
+const THEME_STORAGE_KEY = "comic-theme";
+
+function getThemeIndex(theme: string | null) {
+  return THEMES.findIndex((candidate) => candidate === theme);
+}
 
 export default function KatanaThemeSlider() {
   const bladeClipId = useId();
@@ -38,11 +43,13 @@ export default function KatanaThemeSlider() {
   const dragAudioDirectionRef = useRef<"draw" | "sheathe" | null>(null);
 
   useEffect(() => {
-    const defaultTheme = THEMES[DEFAULT_THEME_INDEX];
+    const savedThemeIndex = getThemeIndex(localStorage.getItem(THEME_STORAGE_KEY));
+    const initialThemeIndex = savedThemeIndex >= 0 ? savedThemeIndex : DEFAULT_THEME_INDEX;
+    const initialTheme = THEMES[initialThemeIndex];
 
-    setThemeIndex(DEFAULT_THEME_INDEX);
-    document.documentElement.dataset.comicTheme = defaultTheme;
-    localStorage.setItem("comic-theme", defaultTheme);
+    setThemeIndex(initialThemeIndex);
+    document.documentElement.dataset.comicTheme = initialTheme;
+    localStorage.setItem(THEME_STORAGE_KEY, initialTheme);
   }, []);
 
   function getAudioContext() {
@@ -238,7 +245,7 @@ export default function KatanaThemeSlider() {
     }
     setThemeIndex(nextIndex);
     document.documentElement.dataset.comicTheme = nextTheme;
-    localStorage.setItem("comic-theme", nextTheme);
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
   }
 
   function applyThemeInstantly(nextIndex: number) {
@@ -246,7 +253,7 @@ export default function KatanaThemeSlider() {
 
     setThemeIndex(nextIndex);
     document.documentElement.dataset.comicTheme = nextTheme;
-    localStorage.setItem("comic-theme", nextTheme);
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
   }
 
   function clampProgress(progress: number) {
