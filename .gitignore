@@ -40,3 +40,7 @@ WhatsApp Image*.jpg
 # root-level duplicate mp3s (originals live in public/audio/)
 page-flip-fx_A_minor.mp3
 sword-katana-unsheathing-sound-effect_A_minor.mp3
+# portrait images — served from Cloudinary in production
+public/images/portrait.png
+public/images/portrait-manga.png
+public/images/portrait.jpeg

@@ -1,4 +1,4 @@
-# Prabhat Bajpai — Portfolio
+# Prabhat Bajpai - Portfolio
 
 A comic-inspired portfolio for Prabhat Bajpai: a software engineer focused on building, breaking, fixing, and repeating until systems actually work.
 
@@ -6,10 +6,10 @@ The site uses a manga/anime visual direction with four persistent themes switcha
 
 ## Themes
 
-- **Paint** — warm colour wash, default on first visit
-- **Draft** — manga sketch style with a separate illustrated portrait
-- **Coffee** — sepia/brown tones
-- **Noir** — black and grey with yellow accent
+- Paint - warm colour wash, default on first visit
+- Draft - manga sketch style with a separate illustrated portrait
+- Coffee - sepia/brown tones
+- Noir - black and grey with yellow accent
 
 ## Stack
 
@@ -19,16 +19,17 @@ The site uses a manga/anime visual direction with four persistent themes switcha
 - Science Gothic (variable font via Google Fonts)
 - Markdown-backed blog system
 - Resend API for the contact form
+- Cloudinary for portrait image hosting
 - Vercel Web Analytics
 
 ## Routes
 
-- `/` — landing page with animated name, portrait, and katana theme slider
-- `/projects` — PRMPT, Cindr, and WebToMD project cards
-- `/blog` — markdown blog index
-- `/blog/[slug]` — individual blog article pages
-- `/say-hi` — contact form ("Ping Me") and social links
-- `/contact` — redirects to `/say-hi`
+- `/` - landing page with animated name, portrait, and katana theme slider
+- `/projects` - PRMPT, Cindr, and WebToMD project cards
+- `/blog` - markdown blog index
+- `/blog/[slug]` - individual blog article pages
+- `/ping-me` - contact form and social links
+- `/contact` - redirects to `/ping-me`
 
 ## Local Development
 
@@ -48,12 +49,16 @@ Open `http://localhost:3000`.
 
 ## Environment Variables
 
-Create `.env.local` for local contact form delivery:
+Create `.env.local`:
 
 ```env
 RESEND_API_KEY=your_resend_api_key
 CONTACT_FROM_EMAIL="Portfolio <onboarding@resend.dev>"
 CONTACT_TO_EMAIL=your@email.com
+
+# Cloudinary portrait images (optional - falls back to /images/ if not set)
+NEXT_PUBLIC_PORTRAIT_URL=https://res.cloudinary.com/your-cloud/image/upload/portrait.png
+NEXT_PUBLIC_PORTRAIT_MANGA_URL=https://res.cloudinary.com/your-cloud/image/upload/portrait-manga.png
 ```
 
 Notes:
@@ -63,9 +68,23 @@ Notes:
 - For production, verify a real domain in Resend and use a sender like `Portfolio <hello@yourdomain.com>`.
 - Rotate the Resend API key if it has ever been shared outside Vercel environment settings.
 
+## Images and Audio
+
+Portrait images are hosted on Cloudinary to keep them out of the git repository.
+Audio files live in `public/audio/` and are committed directly since they are small.
+
+If you fork this and want to add your own portrait:
+
+1. Upload your image to [Cloudinary](https://cloudinary.com) (free tier is enough).
+2. Copy the delivery URL from the Cloudinary dashboard.
+3. Set `NEXT_PUBLIC_PORTRAIT_URL` (and `NEXT_PUBLIC_PORTRAIT_MANGA_URL` if you have a second version) in your environment variables.
+4. If you prefer to skip Cloudinary, drop your image in `public/images/` and remove those env vars - the code falls back to `/images/portrait.png` automatically.
+
+The same approach works for audio: upload to Cloudinary, swap the `src` in the audio component, and keep the binary out of git.
+
 ## Contact Form
 
-The Ping Me form posts to `POST /api/say-hi`.
+The Ping Me form posts to `POST /api/ping-me`.
 
 The API route:
 
@@ -104,6 +123,8 @@ Add these environment variables in Vercel Project Settings:
 - `RESEND_API_KEY`
 - `CONTACT_FROM_EMAIL`
 - `CONTACT_TO_EMAIL`
+- `NEXT_PUBLIC_PORTRAIT_URL`
+- `NEXT_PUBLIC_PORTRAIT_MANGA_URL`
 
 Redeploy after changing env vars.
 
@@ -113,3 +134,4 @@ Redeploy after changing env vars.
 npm run lint
 npm run build
 ```
+
