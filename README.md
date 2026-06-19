@@ -1,31 +1,34 @@
-# Prabhat Bajpai Portfolio
+# Prabhat Bajpai — Portfolio
 
 A comic-inspired portfolio for Prabhat Bajpai: a software engineer focused on building, breaking, fixing, and repeating until systems actually work.
 
-The site is built with Next.js and uses a lightweight manga/anime visual direction with three persistent themes:
+The site uses a manga/anime visual direction with four persistent themes switchable via the katana slider on the home page. Motion is intentionally minimal throughout.
 
-- Draft
-- Paint
-- Coffee
+## Themes
 
-The home page keeps motion intentionally limited to the katana theme slider. Projects, blogs, and the Say Hi page use the same visual system with internal page scrolling.
+- **Paint** — warm colour wash, default on first visit
+- **Draft** — manga sketch style with a separate illustrated portrait
+- **Coffee** — sepia/brown tones
+- **Noir** — black and grey with yellow accent
 
 ## Stack
 
 - Next.js App Router
 - React
-- Tailwind CSS
-- Markdown-backed blog content
-- Resend email API for the contact form
+- Tailwind CSS v4
+- Science Gothic (variable font via Google Fonts)
+- Markdown-backed blog system
+- Resend API for the contact form
+- Vercel Web Analytics
 
 ## Routes
 
-- `/` - landing page with animated name, portrait, and katana theme slider
-- `/projects` - PRMPT, Cindr, and WebToMD project cards
-- `/blog` - markdown blog index
-- `/blog/[slug]` - individual blog article pages
-- `/say-hi` - contact form and social links
-- `/contact` - redirects to `/say-hi`
+- `/` — landing page with animated name, portrait, and katana theme slider
+- `/projects` — PRMPT, Cindr, and WebToMD project cards
+- `/blog` — markdown blog index
+- `/blog/[slug]` — individual blog article pages
+- `/say-hi` — contact form ("Ping Me") and social links
+- `/contact` — redirects to `/say-hi`
 
 ## Local Development
 
@@ -50,32 +53,32 @@ Create `.env.local` for local contact form delivery:
 ```env
 RESEND_API_KEY=your_resend_api_key
 CONTACT_FROM_EMAIL="Portfolio <onboarding@resend.dev>"
-CONTACT_TO_EMAIL=prabhatbajpai2005@gmail.com
+CONTACT_TO_EMAIL=your@email.com
 ```
 
 Notes:
 
-- `.env.local` is ignored by git.
-- `CONTACT_FROM_EMAIL` can use `onboarding@resend.dev` for Resend testing.
+- `.env.local` is ignored by git and must never be committed.
+- `CONTACT_FROM_EMAIL` can use `onboarding@resend.dev` for Resend sandbox testing.
 - For production, verify a real domain in Resend and use a sender like `Portfolio <hello@yourdomain.com>`.
-- Rotate the Resend key if it has ever been shared outside the environment settings.
+- Rotate the Resend API key if it has ever been shared outside Vercel environment settings.
 
-## Contact Form Flow
+## Contact Form
 
-The Say Hi form posts to `POST /api/say-hi`.
+The Ping Me form posts to `POST /api/say-hi`.
 
 The API route:
 
 - validates the reply field as an email, handle, or supported social URL
 - validates message length
-- ignores bot submissions through a honeypot field
-- sends the message through Resend when env vars are configured
+- ignores bot submissions via a honeypot field
+- sends through Resend when env vars are present
 
-Without `RESEND_API_KEY` and `CONTACT_FROM_EMAIL`, the endpoint returns a setup error instead of pretending the message was sent.
+Without `RESEND_API_KEY` and `CONTACT_FROM_EMAIL`, the endpoint returns a configuration error rather than silently failing.
 
 ## Blog Content
 
-Blog posts live in the root `blogs/` directory as markdown files with frontmatter:
+Posts live in `blogs/` as markdown files with frontmatter:
 
 ```md
 ---
@@ -87,15 +90,14 @@ excerpt: Short description.
 Post content here.
 ```
 
-The slug is generated from the markdown filename.
+The slug is derived from the filename.
 
 ## Vercel Deployment
 
-Recommended Vercel setup:
+Recommended setup:
 
 - Framework preset: Next.js
 - Root directory: `./`
-- Project name example: `prabhat-dev`, which creates `https://prabhat-dev.vercel.app`
 
 Add these environment variables in Vercel Project Settings:
 
@@ -103,19 +105,11 @@ Add these environment variables in Vercel Project Settings:
 - `CONTACT_FROM_EMAIL`
 - `CONTACT_TO_EMAIL`
 
-After changing env vars, redeploy the project.
+Redeploy after changing env vars.
 
 ## Checks
 
-Run linting:
-
 ```bash
 npm run lint
-```
-
-Run a production build:
-
-```bash
 npm run build
 ```
-

@@ -29,3 +29,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw local assets (reference images, prototypes, duplicate audio)
+*.wav
+katana_unsheath_slider_v4.html
+18bda738-a26c-43be-913b-9488b35e48e1.png
+ChatGPT Image*.png
+WhatsApp Image*.jpeg
+WhatsApp Image*.jpg
+# root-level duplicate mp3s (originals live in public/audio/)
+page-flip-fx_A_minor.mp3
+sword-katana-unsheathing-sound-effect_A_minor.mp3
