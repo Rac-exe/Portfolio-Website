@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-body: "Yomogi", "M PLUS Rounded 1c", system-ui, sans-serif;
-  --font-title: "Kaisei Decol", "Yomogi", serif;
-  --font-sans: var(--font-body);
+  --font-sans: "Science Gothic", system-ui, sans-serif;
 }
 
 :root {
+  --font-body: "Science Gothic", system-ui, sans-serif;
+  --font-title: "Science Gothic", serif;
   --page-bg: #f3efe4;
   --paper: #fffaf0;
   --paper-deep: #f1eadb;
