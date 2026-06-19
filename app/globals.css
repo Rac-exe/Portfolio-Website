@@ -600,7 +600,6 @@ a.ink-link:hover {
   background:
     radial-gradient(circle at 30% 25%, var(--wash), transparent 8rem),
     radial-gradient(circle at 70% 70%, var(--sky), transparent 9rem),
-    repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in srgb, var(--line) 6%, transparent) 18px 19px),
     var(--portrait-bg);
   transition: background 260ms ease, border-color 260ms ease;
 }
@@ -626,13 +625,11 @@ a.ink-link:hover {
 
 .portrait-image-frame::before {
   background:
-    radial-gradient(var(--line) 0.8px, transparent 1px),
     repeating-linear-gradient(
       103deg,
       transparent 0 14px,
       color-mix(in srgb, var(--line) 14%, transparent) 14px 15px
     );
-  background-size: 8px 8px, 100% 100%;
   mix-blend-mode: multiply;
   opacity: 0.22;
 }
@@ -720,7 +717,6 @@ a.ink-link:hover {
 
 [data-comic-theme="coffee"] .portrait-image-frame::before {
   background:
-    radial-gradient(color-mix(in srgb, var(--line) 70%, transparent) 0.8px, transparent 1px),
     repeating-linear-gradient(
       102deg,
       transparent 0 13px,
@@ -749,7 +745,6 @@ a.ink-link:hover {
 
 [data-comic-theme="noir"] .portrait-image-frame::before {
   background:
-    radial-gradient(color-mix(in srgb, var(--line) 40%, transparent) 0.8px, transparent 1px),
     repeating-linear-gradient(
       102deg,
       transparent 0 13px,
