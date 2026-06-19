@@ -10,7 +10,7 @@ const LEFT_LINKS = [
 
 const RIGHT_LINKS = [
   { label: "blogs", href: "/blog" },
-  { label: "say hi", href: "/say-hi" },
+  { label: "ping me", href: "/say-hi" },
 ];
 
 export default function ComicNav() {

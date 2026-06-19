@@ -15,7 +15,7 @@ export default function SayHiContent() {
           EMAIL / X / BUILDING THINGS
         </p>
         <h1 className="manga-title mt-3 text-5xl leading-tight md:text-6xl">
-          Say Hi
+          Ping Me
         </h1>
         <p>
           Best way to connect with me is through{" "}
