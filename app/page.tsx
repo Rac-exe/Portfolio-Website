@@ -3,6 +3,9 @@ import ComicNav from "./components/ComicNav";
 import ComicScrollFrame from "./components/ComicScrollFrame";
 import KatanaThemeSlider from "./components/KatanaThemeSlider";
 
+const PORTRAIT_URL = process.env.NEXT_PUBLIC_PORTRAIT_URL ?? "/images/portrait.png";
+const PORTRAIT_MANGA_URL = process.env.NEXT_PUBLIC_PORTRAIT_MANGA_URL ?? "/images/portrait-manga.png";
+
 export default function Home() {
   return (
     <main className="comic-stage comic-scroll-stage">
@@ -86,7 +89,7 @@ export default function Home() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <a className="availability-cta text-2xl" href="/say-hi">
+              <a className="availability-cta text-2xl" href="/ping-me">
                 <span className="availability-dot" />
                 <span>Open to work on interesting problems</span>
               </a>
@@ -132,12 +135,12 @@ export default function Home() {
                 <img
                   alt="Prabhat Bajpai"
                   className="portrait-image portrait-image-default"
-                  src="/images/portrait.png"
+                  src={PORTRAIT_URL}
                 />
                 <img
                   alt="Prabhat Bajpai"
                   className="portrait-image portrait-image-manga"
-                  src="/images/portrait-manga.png"
+                  src={PORTRAIT_MANGA_URL}
                 />
               </div>
             </div>

@@ -22,7 +22,7 @@ export default function SayHiForm({ nameInputRef, replyInputRef }: SayHiFormProp
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("/api/say-hi", {
+      const response = await fetch("/api/ping-me", {
         method: "POST",
         body: JSON.stringify({
           name: formData.get("name"),

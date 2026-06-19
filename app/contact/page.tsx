@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function ContactPage() {
-  redirect("/say-hi");
+  redirect("/ping-me");
 }
