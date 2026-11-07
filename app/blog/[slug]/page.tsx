@@ -1,9 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
-import ComicNav from "../../components/ComicNav";
-import ComicScrollFrame from "../../components/ComicScrollFrame";
 import {
   formatBlogDate,
   getBlogPost,
@@ -65,7 +64,7 @@ function renderInline(text: string): ReactNode {
   return parseInline(text).map((segment, index) => {
     if (segment.type === "strong") {
       return (
-        <strong className="article-highlight" key={`${segment.value}-${index}`}>
+        <strong key={`${segment.value}-${index}`}>
           {segment.value}
         </strong>
       );
@@ -111,6 +110,20 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+export async function generateMetadata({ params }: BlogArticlePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
+}
+
 export default async function BlogArticlePage({ params }: BlogArticlePageProps) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
@@ -120,31 +133,22 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
   }
 
   return (
-    <main className="comic-stage comic-scroll-stage">
-      <section className="comic-page comic-scroll-frame">
-        <ComicScrollFrame className="px-8 pb-12 pt-6 sm:px-12 md:px-20 lg:px-24">
-          <ComicNav />
-          <article className="blog-article">
-            <Link className="blog-back-link" href="/blog">
-              ← Back to blogs
-            </Link>
+    <article>
+      <Link className="back-link" href="/blog">
+        ← Writing
+      </Link>
 
-            <header>
-              <p className="blog-article-meta">
-                {formatBlogDate(post.date)} / {post.readingTime}
-              </p>
-              <h1 className="manga-title mt-3 max-w-4xl text-3xl leading-tight sm:text-4xl">
-                {post.title}
-              </h1>
-              <p className="blog-article-excerpt">{post.excerpt}</p>
-            </header>
+      <header className="article-header">
+        <p className="article-meta mono">
+          <time dateTime={post.date}>{formatBlogDate(post.date)}</time> · {post.readingTime}
+        </p>
+        <h1 className="page-title">{post.title}</h1>
+        {post.excerpt ? <p className="lede">{post.excerpt}</p> : null}
+      </header>
 
-            <div className="blog-article-body">
-              {post.blocks.map((block, index) => renderBlock(block, index))}
-            </div>
-          </article>
-        </ComicScrollFrame>
-      </section>
-    </main>
+      <div className="article-body">
+        {post.blocks.map((block, index) => renderBlock(block, index))}
+      </div>
+    </article>
   );
 }

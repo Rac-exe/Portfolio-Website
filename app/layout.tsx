@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import ComicThemePersistence from "./components/ComicThemePersistence";
-import PageFlipSound from "./components/PageFlipSound";
+
+import SiteFooter from "./components/SiteFooter";
+import SiteHeader from "./components/SiteHeader";
+import { SITE } from "./lib/site";
 import "./globals.css";
 
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
+
 export const metadata: Metadata = {
-  title: "Prabhat Bajpai - Software Engineer",
-  description:
-    "Comic-inspired portfolio first page for Prabhat Bajpai, a software engineer based in Bengaluru.",
+  title: {
+    default: `${SITE.name} · ${SITE.role}`,
+    template: `%s · ${SITE.name}`,
+  },
+  description: SITE.description,
 };
 
 export default function RootLayout({
@@ -16,23 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-comic-theme="paint">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Cabin+Sketch:wght@400;700&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&family=Science+Gothic:wdth,wght@50..200,100..900&family=Kaisei+Decol:wght@400;500;700&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Yomogi&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
-        <ComicThemePersistence />
-        <PageFlipSound />
-        {children}
+        <div className="shell">
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+        </div>
         <Analytics />
       </body>
     </html>

@@ -1,15 +1,10 @@
 "use client";
 
-import { type FormEvent, type RefObject, useState } from "react";
+import { type FormEvent, useState } from "react";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
-type SayHiFormProps = {
-  nameInputRef?: RefObject<HTMLInputElement | null>;
-  replyInputRef?: RefObject<HTMLInputElement | null>;
-};
-
-export default function SayHiForm({ nameInputRef, replyInputRef }: SayHiFormProps) {
+export default function PingMeForm() {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
 
@@ -41,68 +36,63 @@ export default function SayHiForm({ nameInputRef, replyInputRef }: SayHiFormProp
       setState("sent");
     } catch (caughtError) {
       setState("error");
-      setError(caughtError instanceof Error ? caughtError.message : "Could not send message right now.");
+      setError(
+        caughtError instanceof Error ? caughtError.message : "Could not send message right now.",
+      );
     }
   }
 
   return (
-    <form className="say-hi-form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <input
         aria-hidden="true"
         autoComplete="off"
-        className="say-hi-honeypot"
+        className="honeypot"
         name="company"
         tabIndex={-1}
         type="text"
       />
 
-      <label>
+      <label className="field">
         <span>Name</span>
-        <input
-          maxLength={80}
-          name="name"
-          placeholder="Your name"
-          ref={nameInputRef}
-          type="text"
-        />
+        <input maxLength={80} name="name" placeholder="Your name" type="text" />
       </label>
 
-      <label>
-        <span>Email / X / LinkedIn / GitHub / Instagram</span>
+      <label className="field">
+        <span>Where can I reply? Email, or an X / LinkedIn / GitHub handle or link</span>
         <input
           maxLength={160}
           name="reply"
-          placeholder="@username or https://..."
-          ref={replyInputRef}
+          placeholder="you@example.com or @username"
           required
           type="text"
         />
       </label>
 
-      <label>
+      <label className="field">
         <span>Message</span>
         <textarea
           maxLength={1600}
           name="message"
-          placeholder="Tell me what you're building, asking, or thinking about."
+          placeholder="What are you building, asking, or thinking about?"
           required
           rows={6}
         />
       </label>
 
-      <div className="say-hi-form-footer">
-        <button className="comic-button px-5 py-2 text-xl" disabled={state === "sending"} type="submit">
-          {state === "sending" ? "Sending..." : "Send message"}
+      <div className="form-footer">
+        <button className="button" disabled={state === "sending"} type="submit">
+          {state === "sending" ? "Sending…" : "Send message"}
         </button>
 
         {state === "sent" ? (
-          <p className="say-hi-status" role="status">
-            Message sent. I&apos;ll get back when I can.
+          <p className="status" role="status">
+            Sent. I&apos;ll get back to you soon.
           </p>
         ) : null}
 
         {state === "error" ? (
-          <p className="say-hi-status say-hi-status-error" role="alert">
+          <p className="status status-error" role="alert">
             {error}
           </p>
         ) : null}
