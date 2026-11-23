@@ -64,8 +64,8 @@ export const PROJECTS: Project[] = [
     ],
     stack: "Electron, React, TypeScript, Python, FastAPI, Rust (N-API), SQLite, ONNX",
     links: [
+      // tryprmpt.com is left out until it stops saying "coming soon".
       { label: "GitHub", href: "https://github.com/Rac-exe/Prompt" },
-      { label: "Website", href: "https://tryprmpt.com" },
     ],
   },
   {
