@@ -4,7 +4,7 @@ import { PROJECTS } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Prmpt, WebToMD, Cindr, and other things Prabhat Bajpai has built.",
+  description: "Prmpt, WebToMD, and Cindr: things Prabhat Bajpai has built.",
 };
 
 export default function ProjectsPage() {

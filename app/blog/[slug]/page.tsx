@@ -135,7 +135,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
   return (
     <article>
       <Link className="back-link" href="/blog">
-        ← Writing
+        <span aria-hidden="true" className="arrow arrow-back">←</span> Writing
       </Link>
 
       <header className="article-header">

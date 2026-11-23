@@ -3,9 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { LIFE_READY } from "../lib/life";
+
 const LINKS = [
   { label: "projects", href: "/projects" },
   { label: "writing", href: "/blog" },
+  ...(LIFE_READY ? [{ label: "life", href: "/life" }] : []),
   { label: "ping me", href: "/ping-me" },
 ];
 

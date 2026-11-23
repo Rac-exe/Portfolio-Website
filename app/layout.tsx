@@ -11,11 +11,23 @@ const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
     default: `${SITE.name} · ${SITE.role}`,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
+  openGraph: {
+    type: "website",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: `${SITE.name} · ${SITE.role}`,
+    description: SITE.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@PrabhatAstrix",
+  },
 };
 
 export default function RootLayout({

@@ -44,3 +44,7 @@ sword-katana-unsheathing-sound-effect_A_minor.mp3
 public/images/portrait.png
 public/images/portrait-manga.png
 public/images/portrait.jpeg
+
+# private notes and local tooling (never deploy)
+/career/
+/.claude/
