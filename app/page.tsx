@@ -4,7 +4,7 @@ import Link from "next/link";
 import PingField from "./components/PingField";
 import { formatBlogDate, getBlogPosts } from "./lib/blogs";
 import { LIFE_READY } from "./lib/life";
-import { PROJECTS, SITE, WORK } from "./lib/site";
+import { HIGHLIGHTS, PROJECTS, SITE, WORK } from "./lib/site";
 
 const external = { rel: "noopener noreferrer", target: "_blank" } as const;
 
@@ -39,34 +39,32 @@ export default async function Home() {
           </div>
         </div>
         <p>
-          I&apos;m a software engineer in Bengaluru, finishing my degree in
-          2027. I build automation and developer tools, and I&apos;m happiest
-          where software meets real hardware.
+          I build things end to end and ship them: AI tooling, automation, and
+          software that has to work on real hardware, not just in a browser.
+          I&apos;m 21, based in Bengaluru, and finishing my degree in 2027.
         </p>
         <p>
           At{" "}
           <a href="https://thinkseedsystems.com" {...external}>
             ThinkSeed Systems
-          </a>{" "}
-          I&apos;m building a phone emulator for testing automotive digital
-          keys. It plays the phone&apos;s side over BLE, UWB and NFC, so
-          digital-key software can be tested automatically against real car
-          hardware instead of by hand with a phone.
+          </a>
+          , an automotive software company, I build test automation for digital
+          car keys: tooling that runs scripted, repeatable test campaigns
+          against real vehicle hardware instead of slow manual testing.
         </p>
         <p>
           Before that I co-founded{" "}
           <a href="https://github.com/Rac-exe/Prompt" {...external}>
             Prmpt
           </a>
-          , a desktop app that rewrites rough prompts before they reach a
-          model, with a code-intelligence engine that coding agents can query
-          over MCP. When we stopped running it as a startup, we open-sourced
-          it.
+          , an AI desktop app with its own code-search engine for coding
+          agents. We ran it as a startup, then open-sourced it.
         </p>
         <p>
-          I&apos;m looking for my next role in AI engineering, test automation,
-          or AI and hardware, and I&apos;m open to relocating or working
-          remotely. <a href={`mailto:${SITE.email}`}>Email me</a>.
+          I want to join a startup where I can own hard problems end to end:
+          AI products, developer tools, automation, or anything that touches
+          hardware. Bengaluru, remote or relocating all work.{" "}
+          <a href={`mailto:${SITE.email}`}>Email me</a>.
         </p>
         {LIFE_READY ? (
           <p>
@@ -78,6 +76,17 @@ export default async function Home() {
             </Link>
           </p>
         ) : null}
+      </section>
+
+      <section className="section" aria-labelledby="highlights-heading">
+        <h2 className="section-title" id="highlights-heading">
+          Highlights
+        </h2>
+        <ul className="highlights">
+          {HIGHLIGHTS.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </section>
 
       <section className="section" aria-labelledby="work-heading">

@@ -44,8 +44,16 @@ export const WORK: Role[] = [
     role: "Software engineering intern",
     period: "Jul 2026 — now",
     summary:
-      "Building a phone emulator and test-automation framework for automotive digital keys: it drives BLE, UWB and NFC from the phone's side against real ECUs, parses serial output, and checks protocol behaviour across test scenarios. Python.",
+      "Test automation for automotive digital keys: scripted, repeatable test campaigns against real vehicle hardware over wireless and serial interfaces, replacing slow manual testing. Python, embedded targets.",
   },
+];
+
+/** Short, provable claims shown on the homepage. Keep each one checkable. */
+export const HIGHLIGHTS: string[] = [
+  "Co-founded Prmpt and wrote most of it (453 of 686 commits): Electron, Rust and Python, plus a local retrieval engine served over MCP.",
+  "Built an agent benchmark: in its latest run Prmpt's agent completed all 27 tasks, matching Claude Code, Cursor and Codex.",
+  "Shipped a Python CLI to PyPI (WebToMD) and a full-stack app with its own recommender (Cindr).",
+  "1st place, Full Stack Development Hackathon, 2025.",
 ];
 
 export const PROJECTS: Project[] = [
@@ -59,7 +67,8 @@ export const PROJECTS: Project[] = [
     description: [
       "A desktop prompt optimizer for Windows and macOS. A native keyboard hook catches @prompt anywhere on your system, opens a small overlay, and runs your rough instruction through a pipeline that clarifies, plans and rewrites it before it reaches a model.",
       "Spaces connects it to your own repositories. Code is parsed with Tree-sitter, indexed locally in SQLite with full-text search and on-device ONNX embeddings, and retrieved with a hybrid, graph-aware search so prompts carry real context.",
-      "The same index is exposed as an MCP server, so coding agents fetch precise context in one call instead of spending turns on file reads and grep. I built a benchmark harness to measure it: Claude and Codex agents on 100k+ line repositories, comparing token cost, task completion and how they explore.",
+      "The same index is exposed as an MCP server, so coding agents fetch precise context in one call instead of spending turns on file reads and grep. I built a benchmark harness to measure it on 100k+ line repositories, pitting our CLI agent against Claude Code, Cursor and Codex on task completion, tool calls and cost. In the latest run it completed all 27 tasks, matching all three.",
+      "I wrote 453 of the project's 686 commits.",
       "I co-founded it as a startup. When we stopped pursuing that, we made it local-first with bring-your-own-key and open-sourced it. There is no account and no hosted backend.",
     ],
     stack: "Electron, React, TypeScript, Python, FastAPI, Rust (N-API), SQLite, ONNX",
