@@ -915,27 +915,3 @@ a:hover .arrow-back {
   box-shadow: 0 0 0 3px color-mix(in srgb, #22a55b 22%, transparent);
 }
 
-/* ---------- Highlights ---------- */
-
-.highlights {
-  display: grid;
-  gap: 0.625rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.highlights li {
-  position: relative;
-  padding-left: 1.25rem;
-}
-
-.highlights li::before {
-  content: "";
-  position: absolute;
-  left: 0.125rem;
-  top: 0.75em;
-  width: 0.5rem;
-  height: 1px;
-  background: var(--muted);
-}

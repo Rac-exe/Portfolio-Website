@@ -4,7 +4,7 @@ import Link from "next/link";
 import PingField from "./components/PingField";
 import { formatBlogDate, getBlogPosts } from "./lib/blogs";
 import { LIFE_READY } from "./lib/life";
-import { HIGHLIGHTS, PROJECTS, SITE, WORK } from "./lib/site";
+import { PROJECTS, SITE, WORK } from "./lib/site";
 
 const external = { rel: "noopener noreferrer", target: "_blank" } as const;
 
@@ -39,32 +39,55 @@ export default async function Home() {
           </div>
         </div>
         <p>
-          I build things end to end and ship them: AI tooling, automation, and
-          software that has to work on real hardware, not just in a browser.
-          I&apos;m 21, based in Bengaluru, and finishing my degree in 2027.
+          Hi, I&apos;m 21 and based in Bengaluru. I build things end to end and
+          ship them: AI tooling, automation, and software that has to work on
+          real hardware, not just in a browser. Any corner of software is fair
+          game. I&apos;d call myself a mad engineer who genuinely enjoys the
+          work.
         </p>
         <p>
-          At{" "}
+          Right now I&apos;m interning at{" "}
           <a href="https://thinkseedsystems.com" {...external}>
             ThinkSeed Systems
           </a>
-          , an automotive software company, I build test automation for digital
-          car keys: tooling that runs scripted, repeatable test campaigns
-          against real vehicle hardware instead of slow manual testing.
+          , where I&apos;ve worked on a real product from day one: a
+          test-automation tool for digital car keys. It runs thousands of
+          scenarios, as close to real use as possible, as repeatable test
+          campaigns against real vehicle hardware. A software change can be
+          regression-tested in hours instead of weeks, the hardware&apos;s
+          quirks and limits show up long before a customer would find them,
+          and both developers and testers get out of slow manual testing.
         </p>
         <p>
           Before that I co-founded{" "}
-          <a href="https://github.com/Rac-exe/Prompt" {...external}>
+          <a href="https://tryprmpt.com" {...external}>
             Prmpt
           </a>
           , an AI desktop app with its own code-search engine for coding
-          agents. We ran it as a startup, then open-sourced it.
+          agents. The goal was to cut token usage by handing agents exactly the
+          right context. In internal tests it held its own against Claude Code,
+          Cursor and other harnesses. Models have come a long way since, but I
+          still think that engine earns its place in legacy codebases with
+          millions of lines.
         </p>
         <p>
-          I want to join a startup where I can own hard problems end to end:
-          AI products, developer tools, automation, or anything that touches
-          hardware. Bengaluru, remote or relocating all work.{" "}
-          <a href={`mailto:${SITE.email}`}>Email me</a>.
+          I&apos;ve also built{" "}
+          <Link href="/projects#webtomd">WebToMD</Link>, a Python tool that
+          turns any web page into clean Markdown or a full design system, for
+          design and research engineers, and{" "}
+          <Link href="/projects#cindr">Cindr</Link>, where cinephiles find the
+          next film they&apos;ll love and keep track of what they&apos;ve
+          watched. It might become a way to meet people with the same taste in
+          movies, too.
+        </p>
+        <p>
+          I&apos;m looking to join a startup where I can own hard problems end to
+          end: AI products, developer tools, automation, or anything that
+          touches hardware. I&apos;ll take features from idea to production and
+          own them completely. If there&apos;s something I don&apos;t know yet,
+          give me a few days and I&apos;ll come back having learned it. Whatever
+          I take on gets everything I&apos;ve got. Bengaluru or remote both
+          work. <a href={`mailto:${SITE.email}`}>Email me</a>.
         </p>
         {LIFE_READY ? (
           <p>
@@ -76,17 +99,6 @@ export default async function Home() {
             </Link>
           </p>
         ) : null}
-      </section>
-
-      <section className="section" aria-labelledby="highlights-heading">
-        <h2 className="section-title" id="highlights-heading">
-          Highlights
-        </h2>
-        <ul className="highlights">
-          {HIGHLIGHTS.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
       </section>
 
       <section className="section" aria-labelledby="work-heading">
